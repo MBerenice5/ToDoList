@@ -298,3 +298,15 @@ strong{
     padding:1rem;
     border-radius:8px;
 }
+
+@media (min-width: 1025px) {
+    .body-desktop {
+        background:var(--background);
+        max-width: 600px;
+        margin: 2rem auto;
+        border-radius: 10px;
+        padding: 2rem;
+        border:2px solid var(--card-white);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+}
