@@ -1,10 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Trocchi&display=swap"
+          rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7428d8029f.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<header>
+    <h1 id="typewriter" aria-hidden="true"></h1>
 
+    <button id="open-modal" class="add-task-btn" aria-label="Agregar tarea"><i class="fas fa-plus"></i></button>
+</header>
+
+<main>
+    <div id="task-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="modal-content" role="document">
+            <div class="modal-header">
+                <h2 id="modal-title">Agregar nueva tarea</h2>
+                <label id="close-modal" class="close" aria-label="Cerrar modal"><i class="fas fa-times"></i></label>
+            </div>
+
+            <form id="task-form" class="modal-form" autocomplete="off">
+                <label for="task-input">Tarea:</label>
+                <input id="task-input" name="task" type="text" placeholder="Nombre de la tarea" required>
+
+                <label for="category-select">Categoría:</label>
+                <select id="category-select" name="category" required>
+                    <option value="" disabled selected>Seleccione una categoría</option>
+                    <option value="Trabajo">Trabajo</option>
+                    <option value="Estudio">Estudio</option>
+                    <option value="Personal">Personal</option>
+                </select>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancel-btn" class="secondary">Cancelar</button>
+                    <button type="submit" id="save-btn" class="primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="top-row">
+        <div class="filters">
+            <button id="filter-default" class="filter-btn" data-category="">Todos</button>
+            <button id="filter-work" class="filter-btn" data-category="Trabajo">Trabajo</button>
+            <button id="filter-study" class="filter-btn" data-category="Estudio">Estudio</button>
+            <button id="filter-personal" class="filter-btn" data-category="Personal">Personal</button>
+        </div>
+
+        <div class="counters" aria-live="polite">
+            Pendientes: <strong id="pending-count"> 0</strong> | Completadas: <strong id="completed-count"> 0</strong>
+        </div>
+    </div>
+
+    <section id="task-list" class="task-list" aria-label="Lista de tareas">
+
+        <template id="task-template">
+            <article class="task-card">
+                <div class="task-row">
+                    <input type="checkbox" class="task-checkbox" aria-label="Marcar completada">
+                    <span class="task-text"></span>
+                </div>
+
+                <div class="task-meta">
+                    <span class="task-category"></span>
+                    <div class="task-actions">
+                        <button class="edit-btn" title="Editar tarea" aria-label="Editar"><i
+                                class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button class="delete-btn" title="Eliminar tarea" aria-label="Eliminar"><i
+                                class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </template>
+    </section>
+
+    <div class="actions">
+        <button id="delete-all" class="danger">Borrar todas</button>
+        <button id="complete-all">Marcar todas completas</button>
+    </div>
+</main>
+
+<script src="app.js"></script>
 </body>
+
 </html>
